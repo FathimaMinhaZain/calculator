@@ -24,7 +24,7 @@
     justify-content:flex-end;
 } */
 
-.cal form input {
+.cal input {
     width: 315px;
     height:50px;
     margin: 8px 0 8px 0;
@@ -32,7 +32,7 @@
     border: none;
     text-align:right;
     padding:0 15px 0 15px;
-
+    font-size: 25px;
 }
 
 .btns button{

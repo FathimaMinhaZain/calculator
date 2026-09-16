@@ -9,48 +9,51 @@
 <body>
     <div class="page">
         <div class="cal">
-            <form>
+            <!--  -->
                 <div class="entry">
-                    <input placeholder="0">
+                    <input placeholder="0" id="inputBox" type = 'text'>
                 </div>
                 <div class="btns">
                     <div >
-                        <button class="first">AC</button>
-                        <button class="first">+/-</button>
-                        <button class="first">%</button>
-                        <button class="op">/</button>
+                        <button class="first" onclick="clearDisplay()">AC</button>
+                        <!--  -->
+                        <button class="first" onclick="getSign()">+/-</button>
+                        <button class="first" onclick="getOperator('%')">%</button>
+                        <button class="op" onclick="getOperator('/')">/</button>
                     </div>
                     <div>
-                        <button onclick="appendToEntry('7')">7</button>
-                        <button>8</button>
-                        <button>9</button>
-                        <button class="op">*</button>
+                        <button onclick="getNumber(7)">7</button>
+                        <button onclick="getNumber(8)">8</button>
+                        <button onclick="getNumber(9)">9</button>
+                        <button class="op" onclick="getOperator('*')">*</button>
                     </div>
                     <div>
-                        <button>4</button>
-                        <button>5</button>
-                        <button>6</button>
-                        <button class="op">-</button>
+                        <button onclick="getNumber(4)">4</button>
+                        <button onclick="getNumber(5)">5</button>
+                        <button onclick="getNumber(6)">6</button>
+                        <button class="op" onclick="getOperator('-')">-</button>
                     </div>
                     <div>
-                        <button>1</button>
-                        <button>2</button>
-                        <button>3</button>
-                        <button class="op">+</button>
+                        <button onclick="getNumber(1)">1</button>
+                        <button onclick="getNumber(2)">2</button>
+                        <button onclick="getNumber(3)">3</button>
+                        <button class="op" onclick="getOperator('+')">+</button>
                     </div>
                     <div>
-                        <button>
+                        <!--  -->
+                        <button onclick="getHistory()">
                             <img src="icons/recent-repeat-icon.svg" height="12">
                         </button>
-                        <button>0</button>
-                        <button>.</button>
-                        <button class="op">=</button>
+                        <button onclick="getNumber(0)">0</button>
+                        <!--  -->
+                        <button >.</button>
+                        <button class="op" onclick="calculateResult()">=</button>
                     </div>
 
                 </div>
                 
             
-            </form>
+            <!--  -->
         </div>
     </div>
 
