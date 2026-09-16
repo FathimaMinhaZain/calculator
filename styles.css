@@ -1,0 +1,57 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.page{
+    width:100%;
+    height:100vh;
+    background-color:darkseagreen;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.cal{
+    background-color: black;  
+    padding:10px;
+    border-radius:10px;
+}
+
+/* .entry{
+    display:flex;
+    justify-content:flex-end;
+} */
+
+.cal form input {
+    width: 315px;
+    height:50px;
+    margin: 8px 0 8px 0;
+    border-radius: 10px;
+    border: none;
+    text-align:right;
+    padding:0 15px 0 15px;
+
+}
+
+.btns button{
+    width:70px;
+    height:50px;
+    margin: 3px;
+    border-radius:40px;
+    border:none;
+}
+
+.btns button:hover{
+    background-color:darkseagreen;
+}
+
+.op{
+    background-color: darkorange;
+}
+
+.first{
+    background-color: grey;
+}
+
