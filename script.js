@@ -8,44 +8,50 @@ let numArray = []
 let secondNumberArr = []
 
 let display = document.getElementById('inputBox');
+let equation = document.getElementById('equation');
 
 function getNumber(num) {
 	if (step === 0 || step === 1) {
 		numArray.push(num)
 		step = 1
 		firstNumber = Number(numArray.join(''))
-		display.value = firstNumber
+		display.textContent = firstNumber
 	} else if (step === 2) {
 		secondNumberArr.push(num)
 		secondNumber = Number(secondNumberArr.join(''))
-		display.value = secondNumber
+		display.textContent = secondNumber
+
+		 equation.textContent = firstNumber + ' ' + operation
 	}
 }
 
 function getOperator(operator) {
 	step = 2
 	operation = operator
+
+	equation.textContent = firstNumber + ' ' + operation;
 }
 
 function calculateResult() {
 	console.log('first number', firstNumber, 'second number', secondNumber)
+	equation.textContent = firstNumber + ' ' + operation + ' ' + secondNumber;
+
+
 	if (operation === '+') {
 		result = firstNumber + secondNumber
-		display.value = result
 	} else if (operation === '-') {
 		result = firstNumber - secondNumber
-		display.value = result
 	} else if (operation === '*') {
 		result = firstNumber * secondNumber
-		display.value = result
 	} else if (operation === '/') {
 		result = firstNumber / secondNumber
-		display.value = result
 	}
+
+	display.textContent = result
 }
 
 function clearDisplay() {
-	display.value = 0
+	display.textContent = 0
 	firstNumber = null
 	secondNumber = null
 	step = 0

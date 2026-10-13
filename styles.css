@@ -13,18 +13,36 @@
     justify-content:center;
 }
 
+#equation{
+    height: 25px;
+    font-size: 16px;
+    color:grey;
+    text-align: right;
+}
+
 .cal{
     background-color: black;  
     padding:10px;
     border-radius:10px;
 }
 
-/* .entry{
-    display:flex;
-    justify-content:flex-end;
-} */
+.entry{
+    width: 315px;
+    height: 70px;
+    margin: 8px 0;
+    border-radius: 10px;
+    background-color: white;
+    padding: 10px 15px 0 15px;
+    text-align: right;
+}
 
-.cal input {
+.display{
+    height: 35px;
+    font-size: 25px;
+    text-align: right; 
+}
+
+/* .cal input {
     width: 315px;
     height:50px;
     margin: 8px 0 8px 0;
@@ -33,7 +51,7 @@
     text-align:right;
     padding:0 15px 0 15px;
     font-size: 25px;
-}
+} */
 
 .btns button{
     width:70px;
