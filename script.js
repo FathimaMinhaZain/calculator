@@ -21,7 +21,7 @@ function getNumber(num) {
 		secondNumber = Number(secondNumberArr.join(''))
 		display.textContent = secondNumber
 
-		 equation.textContent = firstNumber + ' ' + operation
+		equation.textContent = firstNumber + ' ' + operation
 	}
 }
 
@@ -32,26 +32,42 @@ function getOperator(operator) {
 	equation.textContent = firstNumber + ' ' + operation;
 }
 
+function getPercent(){
+	display.textContent += '%'
+	if (step === 1){
+		equation.textContent = firstNumber + '%'
+		firstNumber = firstNumber/100
+	} else if (step===2){
+		equation.textContent = firstNumber + ' ' + operation + secondNumber + '%';
+		secondNumber = firstNumber * (secondNumber/100)
+	} 
+}
+
 function calculateResult() {
-	console.log('first number', firstNumber, 'second number', secondNumber)
-	equation.textContent = firstNumber + ' ' + operation + ' ' + secondNumber;
 
+	if (secondNumber == null){
+		display.textContent = firstNumber
+	}	else {
+		equation.textContent = firstNumber + ' ' + operation + ' ' + secondNumber;
 
-	if (operation === '+') {
-		result = firstNumber + secondNumber
-	} else if (operation === '-') {
-		result = firstNumber - secondNumber
-	} else if (operation === '*') {
-		result = firstNumber * secondNumber
-	} else if (operation === '/') {
-		result = firstNumber / secondNumber
+		if (operation === '+') {
+			result = firstNumber + secondNumber
+		} else if (operation === '-') {
+			result = firstNumber - secondNumber
+		} else if (operation === '*') {
+			result = firstNumber * secondNumber
+		} else if (operation === '/') {
+			result = firstNumber / secondNumber
+		}
+
+		display.textContent = result
 	}
-
-	display.textContent = result
+	
 }
 
 function clearDisplay() {
 	display.textContent = 0
+	equation.textContent = null
 	firstNumber = null
 	secondNumber = null
 	step = 0
