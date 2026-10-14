@@ -25,6 +25,28 @@ function getNumber(num) {
 	}
 }
 
+function getDecimal(){
+	if (step === 0 || step === 1) {
+		if (numArray.includes('.'))
+			return
+		else if (numArray.length == 0)
+			numArray.push(0)
+		numArray.push('.')
+		firstNumber = numArray.join('')
+		display.textContent = firstNumber
+	} else if (step === 2) {
+		if (secondNumberArr.includes('.'))
+			return
+		else if (secondNumberArr.length == 0)
+			secondNumberArr.push(0)
+		secondNumberArr.push('.')
+		secondNumber = secondNumberArr.join('')
+		display.textContent = secondNumber
+
+		equation.textContent = firstNumber + ' ' + operation
+	}
+}
+
 function getOperator(operator) {
 	step = 2
 	operation = operator
@@ -37,7 +59,7 @@ function getPercent(){
 	if (step === 1){
 		equation.textContent = firstNumber + '%'
 		firstNumber = firstNumber/100
-	} else if (step===2){
+	} else if (step === 2){
 		equation.textContent = firstNumber + ' ' + operation + secondNumber + '%';
 		secondNumber = firstNumber * (secondNumber/100)
 	} 
