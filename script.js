@@ -47,6 +47,24 @@ function getDecimal(){
 	}
 }
 
+function getSign(){
+	if (step <=1) {
+		if (numArray[0]=='-')
+			numArray.shift()
+		else
+			numArray.unshift('-')
+		firstNumber = Number(numArray.join(''))
+		display.textContent = firstNumber
+	} else if (step ===2) {
+		if (secondNumberArr[0]=='-')
+			secondNumberArr.shift()
+		else
+			secondNumberArr.unshift('-')
+		secondNumber = Number(secondNumberArr.join(''))
+		display.textContent = secondNumber
+	}
+}
+
 function getOperator(operator) {
 	step = 2
 	operation = operator
@@ -81,7 +99,7 @@ function calculateResult() {
 		} else if (operation === '/') {
 			result = firstNumber / secondNumber
 		}
-
+		result = Math.round(result * 1e10) / 1e10
 		display.textContent = result
 	}
 	
