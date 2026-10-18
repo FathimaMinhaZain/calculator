@@ -13,15 +13,12 @@
                 <div class="entry">
                     <div id="equation"></div>
                     <div class="display" id="inputBox">0</div>
-                    <!-- <input placeholder="0" id="inputBox" type = 'text'> -->
                 </div>
                 <div class="btns">
                     <div >
                         <button class="first" onclick="clearDisplay()">AC</button>
-                        <!--  -->
                         <button class="first" onclick="getSign()">+/-</button>
                         <button class="first" onclick="getPercent()">%</button>
-                        <!--  -->
                         <button class="op" onclick="getOperator('/')">/</button>
                     </div>
                     <div>
@@ -43,11 +40,10 @@
                         <button class="op" onclick="getOperator('+')">+</button>
                     </div>
                     <div>
-                        <button onclick="getHistory()">
+                        <button onclick="location.href='history.html'">
                             <img src="icons/recent-repeat-icon.svg" height="12">
                         </button>
                         <button onclick="getNumber(0)">0</button>
-                        
                         <button onclick="getDecimal()">.</button>
                         <button class="op" onclick="calculateResult()">=</button>
                     </div>

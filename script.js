@@ -7,6 +7,9 @@ let result = 0
 let numArray = []
 let secondNumberArr = []
 
+let history = JSON.parse(sessionStorage.getItem("history") || "[]")
+
+
 let display = document.getElementById('inputBox');
 let equation = document.getElementById('equation');
 
@@ -21,7 +24,7 @@ function getNumber(num) {
 		secondNumber = Number(secondNumberArr.join(''))
 		display.textContent = secondNumber
 
-		equation.textContent = firstNumber + ' ' + operation
+		equation.textContent = firstNumber + ' ' + operation + ' ' + secondNumber
 	}
 }
 
@@ -62,6 +65,8 @@ function getSign(){
 			secondNumberArr.unshift('-')
 		secondNumber = Number(secondNumberArr.join(''))
 		display.textContent = secondNumber
+		equation.textContent = firstNumber + ' ' + operation + ' ' + secondNumber
+
 	}
 }
 
@@ -84,12 +89,12 @@ function getPercent(){
 }
 
 function calculateResult() {
-
+	let historyItem = 0;
 	if (secondNumber == null){
 		display.textContent = firstNumber
-	}	else {
-		equation.textContent = firstNumber + ' ' + operation + ' ' + secondNumber;
 
+		historyItem = equation.textContent + ' = ' + firstNumber;
+	}	else {
 		if (operation === '+') {
 			result = firstNumber + secondNumber
 		} else if (operation === '-') {
@@ -101,7 +106,13 @@ function calculateResult() {
 		}
 		result = Math.round(result * 1e10) / 1e10
 		display.textContent = result
+
+		historyItem = equation.textContent + ' = ' + result;
 	}
+
+	// save history
+	history.push(historyItem)
+	sessionStorage.setItem("history", JSON.stringify(history))
 	
 }
 
