@@ -16,36 +16,36 @@
                 </div>
                 <div class="btns">
                     <div >
-                        <button class="first" onclick="clearDisplay()">AC</button>
-                        <button class="first" onclick="getSign()">+/-</button>
-                        <button class="first" onclick="getPercent()">%</button>
-                        <button class="op" onclick="getOperator('/')">÷</button>
+                        <button class="first" onclick="clearDisplay()" id="clear">AC</button>
+                        <button class="first" onclick="getSign()" id="sign">+/-</button>
+                        <button class="first" onclick="getPercent()" id="percent">%</button>
+                        <button class="op" onclick="getOperator('/')" id="divide">÷</button>
                     </div>
                     <div>
-                        <button onclick="getNumber(7)">7</button>
-                        <button onclick="getNumber(8)">8</button>
-                        <button onclick="getNumber(9)">9</button>
-                        <button class="op" onclick="getOperator('*')">×</button>
+                        <button onclick="getNumber(7)" id="7">7</button>
+                        <button onclick="getNumber(8)" id="8">8</button>
+                        <button onclick="getNumber(9)" id="9">9</button>
+                        <button class="op" onclick="getOperator('*')" id="multiply">×</button>
                     </div>
                     <div>
-                        <button onclick="getNumber(4)">4</button>
-                        <button onclick="getNumber(5)">5</button>
-                        <button onclick="getNumber(6)">6</button>
-                        <button class="op" onclick="getOperator('-')">-</button>
+                        <button onclick="getNumber(4)" id="4">4</button>
+                        <button onclick="getNumber(5)" id="5">5</button>
+                        <button onclick="getNumber(6)" id="6">6</button>
+                        <button class="op" onclick="getOperator('-')" id="subtract">-</button>
                     </div>
                     <div>
-                        <button onclick="getNumber(1)">1</button>
-                        <button onclick="getNumber(2)">2</button>
-                        <button onclick="getNumber(3)">3</button>
-                        <button class="op" onclick="getOperator('+')">+</button>
+                        <button onclick="getNumber(1)" id="1">1</button>
+                        <button onclick="getNumber(2)" id="2">2</button>
+                        <button onclick="getNumber(3)" id="3">3</button>
+                        <button class="op" onclick="getOperator('+')" id="add">+</button>
                     </div>
                     <div>
                         <button onclick="location.href='history.html'">
                             <img src="icons/recent-repeat-icon.svg" height="12">
                         </button>
-                        <button onclick="getNumber(0)">0</button>
-                        <button onclick="getDecimal()">.</button>
-                        <button class="op" onclick="calculateResult()">=</button>
+                        <button onclick="getNumber(0)" id="0">0</button>
+                        <button onclick="getDecimal()" id="decimal">.</button>
+                        <button class="op" onclick="calculateResult()" id="calculate">=</button>
                     </div>
 
                 </div>

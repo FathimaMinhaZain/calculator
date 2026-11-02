@@ -15,26 +15,34 @@ let equation = document.getElementById('equation');
 
 let justCalculated = 'false';
 
+const keyMap = {
+	"+": "add",
+	"-": "subtract",
+	"*": "multiply",
+	"/": "divide",
+	".": "decimal",
+	"=": "calculate",
+	"%": "percent",
+	"Enter": "calculate",
+	"Escape": "clear",
+	"Delete": "clear",
+	"Backspace": "erase"
+}
+
 function getNumber(num) {
 	if (justCalculated === 'true') {
 		clearDisplay()
-		getNumber(num)
 	}
-	else if (step === 0 || step === 1) {
+
+
+	if (step === 0 || step === 1) {
 		numArray.push(num)
 		step = 1
-		firstNumber = Number(numArray.join(''))
-		display.textContent = firstNumber
+		displayNum()
 
-		// console.log(firstNumber + ' getNumber step 0/1')
 	} else if (step === 2) {
 		secondNumberArr.push(num)
-		secondNumber = Number(secondNumberArr.join(''))
-		display.textContent = secondNumber
-
-		// console.log(firstNumber + ' getNumber step 2')
-
-		equation.textContent = firstNumber + ' ' + operation + ' ' + secondNumber
+		displayNum()
 	}
 }
 
@@ -45,14 +53,14 @@ function getDecimal() {
 		else if (numArray.length == 0)
 			numArray.push(0)
 		numArray.push('.')
-		firstNumber = numArray.join('')
-		display.textContent = firstNumber
+		displayNum()
 	} else if (step === 2) {
 		if (secondNumberArr.includes('.'))
 			return
 		else if (secondNumberArr.length == 0)
 			secondNumberArr.push(0)
 		secondNumberArr.push('.')
+
 		secondNumber = secondNumberArr.join('')
 		display.textContent = secondNumber
 
@@ -64,19 +72,17 @@ function getSign() {
 	if (step <= 1) {
 		if (numArray[0] == '-')
 			numArray.shift()
-		else
+		else {
 			numArray.unshift('-')
-		firstNumber = Number(numArray.join(''))
-		display.textContent = firstNumber
+		}
+		displayNum()
 	} else if (step === 2) {
 		if (secondNumberArr[0] == '-')
 			secondNumberArr.shift()
-		else
+		else {
 			secondNumberArr.unshift('-')
-		secondNumber = Number(secondNumberArr.join(''))
-		display.textContent = secondNumber
-		equation.textContent = firstNumber + ' ' + operation + ' ' + secondNumber
-
+		}
+		displayNum()
 	}
 }
 
@@ -159,4 +165,47 @@ function clearDisplay() {
 	numArray = []
 	secondNumberArr = []
 	justCalculated = 'false'
+}
+
+document.addEventListener("keydown", (event) => {
+	if (event.ctrlKey || event.metaKey || event.altKey) return;
+
+	let id;
+	if ("0123456789".includes(event.key)) {
+		id = event.key;
+	}
+	else {
+		id = keyMap[event.key]
+		if (id === "erase") {
+			erase()
+			return
+		}
+	}
+
+	if (!id) return;
+
+	event.preventDefault();
+	document.getElementById(id).click();
+})
+
+function erase() {
+	if (step == 0 || step == 1) {
+		numArray.pop()
+		displayNum()
+	}
+	else if (step == 2) {
+		secondNumberArr.pop()
+		displayNum()
+	}
+}
+
+function displayNum() {
+	if (step == 0 || step == 1) {
+		firstNumber = Number(numArray.join(''))
+		display.textContent = firstNumber
+	} else if (step == 2) {
+		secondNumber = Number(secondNumberArr.join(''))
+		display.textContent = secondNumber
+		equation.textContent = firstNumber + ' ' + operation + ' ' + secondNumber
+	}
 }
