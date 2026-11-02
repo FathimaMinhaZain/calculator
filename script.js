@@ -13,22 +13,28 @@ let history = JSON.parse(sessionStorage.getItem("history") || "[]")
 let display = document.getElementById('inputBox');
 let equation = document.getElementById('equation');
 
+let justCalculated = 'false';
+
 function getNumber(num) {
 	if (step === 0 || step === 1) {
 		numArray.push(num)
 		step = 1
 		firstNumber = Number(numArray.join(''))
 		display.textContent = firstNumber
+
+		// console.log(firstNumber + ' getNumber step 0/1')
 	} else if (step === 2) {
 		secondNumberArr.push(num)
 		secondNumber = Number(secondNumberArr.join(''))
 		display.textContent = secondNumber
 
+		// console.log(firstNumber + ' getNumber step 2')
+
 		equation.textContent = firstNumber + ' ' + operation + ' ' + secondNumber
 	}
 }
 
-function getDecimal(){
+function getDecimal() {
 	if (step === 0 || step === 1) {
 		if (numArray.includes('.'))
 			return
@@ -50,16 +56,16 @@ function getDecimal(){
 	}
 }
 
-function getSign(){
-	if (step <=1) {
-		if (numArray[0]=='-')
+function getSign() {
+	if (step <= 1) {
+		if (numArray[0] == '-')
 			numArray.shift()
 		else
 			numArray.unshift('-')
 		firstNumber = Number(numArray.join(''))
 		display.textContent = firstNumber
-	} else if (step ===2) {
-		if (secondNumberArr[0]=='-')
+	} else if (step === 2) {
+		if (secondNumberArr[0] == '-')
 			secondNumberArr.shift()
 		else
 			secondNumberArr.unshift('-')
@@ -71,49 +77,65 @@ function getSign(){
 }
 
 function getOperator(operator) {
+
+	if (secondNumber != null) {
+		firstNumber = calculate()
+		secondNumber = null
+		secondNumberArr = []
+		display.textContent = null
+	}
+
 	step = 2
 	operation = operator
 
 	equation.textContent = firstNumber + ' ' + operation;
 }
 
-function getPercent(){
+function getPercent() {
 	display.textContent += '%'
-	if (step === 1){
+	if (step === 1) {
 		equation.textContent = firstNumber + '%'
-		firstNumber = firstNumber/100
-	} else if (step === 2){
+		firstNumber = firstNumber / 100
+	} else if (step === 2) {
 		equation.textContent = firstNumber + ' ' + operation + secondNumber + '%';
-		secondNumber = firstNumber * (secondNumber/100)
-	} 
+		secondNumber = firstNumber * (secondNumber / 100)
+	}
+}
+
+function calculate() {
+	if (operation === '+') {
+		result = firstNumber + secondNumber
+	} else if (operation === '-') {
+		result = firstNumber - secondNumber
+	} else if (operation === '*') {
+		result = firstNumber * secondNumber
+	} else if (operation === '/') {
+		result = firstNumber / secondNumber
+	}
+	result = Math.round(result * 1e10) / 1e10
+
+	return result
 }
 
 function calculateResult() {
 	let historyItem = 0;
-	if (secondNumber == null){
+	if (secondNumber == null) {
 		display.textContent = firstNumber
 
 		historyItem = equation.textContent + ' = ' + firstNumber;
-	}	else {
-		if (operation === '+') {
-			result = firstNumber + secondNumber
-		} else if (operation === '-') {
-			result = firstNumber - secondNumber
-		} else if (operation === '*') {
-			result = firstNumber * secondNumber
-		} else if (operation === '/') {
-			result = firstNumber / secondNumber
-		}
-		result = Math.round(result * 1e10) / 1e10
+	} else {
+		result = calculate()
 		display.textContent = result
 
 		historyItem = equation.textContent + ' = ' + result;
+
+
 	}
 
 	// save history
 	history.push(historyItem)
 	sessionStorage.setItem("history", JSON.stringify(history))
-	
+
 }
 
 function clearDisplay() {
@@ -126,4 +148,5 @@ function clearDisplay() {
 	result = 0
 	numArray = []
 	secondNumberArr = []
+	justCalculated = 'false'
 }
