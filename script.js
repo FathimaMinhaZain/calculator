@@ -89,15 +89,19 @@ function getSign() {
 function getOperator(operator) {
 
 	if (secondNumber != null) {
-		firstNumber = calculate()
+		if (justCalculated === 'true')
+			firstNumber = result
+		else{
+			firstNumber = calculate()
+		}
 		secondNumber = null
 		secondNumberArr = []
 		display.textContent = null
+		justCalculated = 'false'
 	}
 
 	step = 2
 	operation = operator
-
 	equation.textContent = firstNumber + ' ' + operation;
 }
 
