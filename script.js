@@ -16,7 +16,7 @@ let equation = document.getElementById('equation');
 let justCalculated = 'false';
 
 function getNumber(num) {
-	if (firstNumber!=null && secondNumber!=null){
+	if (justCalculated === 'true') {
 		clearDisplay()
 		getNumber(num)
 	}
@@ -100,7 +100,10 @@ function getPercent() {
 	if (step === 1) {
 		equation.textContent = firstNumber + '%'
 		firstNumber = firstNumber / 100
-	} else if (step === 2) {
+	} else if (step === 2 && (operation === '/' || operation === '*')) {
+		equation.textContent = firstNumber + ' ' + operation + secondNumber + '%'
+		secondNumber = secondNumber / 100
+	} else {
 		equation.textContent = firstNumber + ' ' + operation + secondNumber + '%';
 		secondNumber = firstNumber * (secondNumber / 100)
 	}
@@ -137,6 +140,7 @@ function calculateResult() {
 
 
 	}
+	justCalculated = 'true'
 
 	// save history
 	history.push(historyItem)
