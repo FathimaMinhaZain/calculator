@@ -60,6 +60,7 @@
     margin: 3px;
     border-radius:40px;
     border:none;
+    font-size: 18px;
 }
 
 .btns button:hover{
@@ -68,6 +69,7 @@
 
 .op{
     background-color: darkorange;
+    
 }
 
 .first{
