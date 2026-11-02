@@ -16,7 +16,11 @@ let equation = document.getElementById('equation');
 let justCalculated = 'false';
 
 function getNumber(num) {
-	if (step === 0 || step === 1) {
+	if (firstNumber!=null && secondNumber!=null){
+		clearDisplay()
+		getNumber(num)
+	}
+	else if (step === 0 || step === 1) {
 		numArray.push(num)
 		step = 1
 		firstNumber = Number(numArray.join(''))
@@ -110,6 +114,8 @@ function calculate() {
 	} else if (operation === '*') {
 		result = firstNumber * secondNumber
 	} else if (operation === '/') {
+		if (secondNumber === 0)
+			return 'stupid and undefined'
 		result = firstNumber / secondNumber
 	}
 	result = Math.round(result * 1e10) / 1e10
