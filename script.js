@@ -34,7 +34,6 @@ function getNumber(num) {
 		clearDisplay()
 	}
 
-
 	if (step === 0 || step === 1) {
 		numArray.push(num)
 		step = 1
@@ -97,11 +96,12 @@ function getOperator(operator) {
 		secondNumber = null
 		secondNumberArr = []
 		display.textContent = null
-		justCalculated = 'false'
+		
 	}
 
 	step = 2
 	operation = operator
+	justCalculated = 'false'
 	equation.textContent = firstNumber + ' ' + operation;
 }
 
